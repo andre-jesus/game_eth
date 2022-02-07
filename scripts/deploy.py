@@ -1,4 +1,4 @@
-from brownie import accounts, NewGame
+from brownie import NewGame
 from scripts.helpful_scripts import get_account
 
 

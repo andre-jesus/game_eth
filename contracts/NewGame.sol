@@ -30,6 +30,6 @@ contract NewGame{
     }
 
     function contracts_balance() public view onlyOwner returns(uint256) {
-        return address(this).balance
+        return address(this).balance;
     }
 }
