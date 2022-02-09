@@ -9,9 +9,11 @@ contract NewGame{
     mapping(address => uint256) public addressToAmountFunded;
     address[] public funders;
     address public owner;
+    uint256 public balance;
 
     constructor() public {
         owner = msg.sender;
+        balance = address(this).balance;
     }
 
 
@@ -29,7 +31,7 @@ contract NewGame{
         msg.sender.transfer(address(this).balance);
     }
 
-    function contracts_balance() public view onlyOwner returns(uint256) {
+    function contracts_balance() public view returns(uint256) {
         return address(this).balance;
     }
 }
