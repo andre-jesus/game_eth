@@ -22,7 +22,7 @@ def fund_to_start(account, contract_address, amount):
 
 
 def winners_prize(contract_address, winners_address):
-    contract_address.withdraw({"from": winners_address})
+    contract_address.withdraw({"from": winner})
 
 
 # def main():
