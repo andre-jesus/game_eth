@@ -37,7 +37,7 @@ $ brownie run scripts/deploy.py --network ganache-local
 4. Run the game with the *play_game.py* sccript, also located in the cripts repository, to the ganache-local network.
 ```
 $ brownie run scripts/play_game.py --network ganache-lacal
-```
+``` 
 
 
 # .env File

@@ -1,11 +1,11 @@
 from brownie import NewGame
-from scripts.helpful_scripts import get_account
+from scripts.helpful_scripts import arbiter_account
 
 
 def deploy_game():
-    account = get_account()
+    account = arbiter_account()
     deploy_game = NewGame.deploy({"from": account})
-    print(deploy_game.address)
+    print("Contract Deployed: {deploy_game.address}")
 
 
 def main():
