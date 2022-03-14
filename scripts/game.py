@@ -6,8 +6,12 @@ from scripts.helpful_scripts import (
     player_account,
     play_again,
 )
-from scripts.contracts_balance import get_balance
-from scripts.fund_game import fund_to_start, winners_prize
+from scripts.contracts_balance import contracts_balance
+from scripts.fund_game import (
+    player2_deposit_to_game,
+    player1_deposit_to_game,
+    is_winner,
+)
 from random import randint
 from enum import Enum
 import time
@@ -53,16 +57,16 @@ while player == False:
     # == Funding contract ==
     print("Player funding contract!")
     time.sleep(2)
-    fund_to_start(players_account, contract_address, amount)
+    player1_deposit_to_game(players_account, contract_address, amount)
     print(f"Player has deposited {amount}\n ===================================")
     print("Computer is funding the contract!")
     time.sleep(2)
-    fund_to_start(computer_account, contract_address, amount)
+    player2_deposit_to_game(computer_account, contract_address, amount)
     print(f"Computer has deposited {amount}\n ====================================")
 
     # Games Balance
     time.sleep(4)
-    balance = get_balance(contract_address)
+    balance = contracts_balance(contract_address)
     print(f"The Game's banlace is {balance}")
 
     # Player's input
@@ -79,21 +83,25 @@ while player == False:
     # === You Lose ===
     if player == computer:
         game_result = GameState.TIE
-        print("you lose")
+        print("tie!")
+
         play_again()
 
     elif player == "rock" and computer == "paper":
         game_result = GameState.COMPUTER_WIN
         print("you lose")
+        is_winner(contract_address, game_result)
         play_again()
 
     elif player == "paper" and computer == "scissors":
         game_result = GameState.COMPUTER_WIN
         print("you lose")
+        is_winner(contract_address, game_result)
         play_again()
 
     elif player == "scissors" and computer == "rock":
         game_result = GameState.COMPUTER_WIN
+        is_winner(contract_address, game_result)
         print("you lose ")
         play_again()
 
@@ -101,6 +109,7 @@ while player == False:
         # === You Win ===
         game_result = GameState.PLAYER_WIN
         print("you win")
+        is_winner(contract_address, game_result)
         play_again()
     player = False
     computer = t[randint(0, 2)]

@@ -38,16 +38,17 @@ contract NewGame {
         deposits[msg.sender] += msg.value;
     }
 
-    // function winner(address payable _winner) external payable onlyArbiter {
-    //     if(_winner == player1){
-    //         winners == payable player1;
-    //         winners.transfer(address(this).balance);
-    //     }
-    //     else(_winner == player2) {
-    //         winner == payable player2;
-    //         winner.transfer(address(this).balance);
-    //     }
-    // }
+    function winner(address payable _winner) external payable onlyArbiter {
+        address payable winners;
+        if(_winner == player1){
+            winners == player1;
+            winners.transfer(address(this).balance);
+        }
+        if(_winner == player2) {
+            winners == player2;
+            winners.transfer(address(this).balance);
+        }
+    }
 
     function totalGameBalance() public view returns (uint256) {
         return address(this).balance;
